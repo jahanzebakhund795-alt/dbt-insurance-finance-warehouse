@@ -1,0 +1,219 @@
+[
+  {
+    "id": "model.insurance_warehouse.stg_claims",
+    "type": "model",
+    "parents": [
+      "seed.insurance_warehouse.claims"
+    ]
+  },
+  {
+    "id": "model.insurance_warehouse.stg_premiums",
+    "type": "model",
+    "parents": [
+      "seed.insurance_warehouse.premiums"
+    ]
+  },
+  {
+    "id": "model.insurance_warehouse.stg_policies",
+    "type": "model",
+    "parents": [
+      "seed.insurance_warehouse.policies"
+    ]
+  },
+  {
+    "id": "model.insurance_warehouse.mart_policy_loss",
+    "type": "model",
+    "parents": [
+      "model.insurance_warehouse.fact_premium",
+      "model.insurance_warehouse.fact_claim",
+      "model.insurance_warehouse.dim_policy"
+    ]
+  },
+  {
+    "id": "model.insurance_warehouse.fact_claim",
+    "type": "model",
+    "parents": [
+      "model.insurance_warehouse.stg_claims",
+      "model.insurance_warehouse.dim_policy"
+    ]
+  },
+  {
+    "id": "model.insurance_warehouse.fact_premium",
+    "type": "model",
+    "parents": [
+      "model.insurance_warehouse.stg_premiums",
+      "model.insurance_warehouse.dim_policy"
+    ]
+  },
+  {
+    "id": "model.insurance_warehouse.dim_policy",
+    "type": "model",
+    "parents": [
+      "model.insurance_warehouse.stg_policies"
+    ]
+  },
+  {
+    "id": "snapshot.insurance_warehouse.policy_history",
+    "type": "snapshot",
+    "parents": [
+      "model.insurance_warehouse.stg_policies"
+    ]
+  },
+  {
+    "id": "analysis.insurance_warehouse.executive_loss_report",
+    "type": "analysis",
+    "parents": [
+      "model.insurance_warehouse.mart_policy_loss"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.valid_claim_amounts",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.fact_claim"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.positive_premiums",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.fact_premium"
+    ]
+  },
+  {
+    "id": "seed.insurance_warehouse.claims",
+    "type": "seed",
+    "parents": []
+  },
+  {
+    "id": "seed.insurance_warehouse.premiums",
+    "type": "seed",
+    "parents": []
+  },
+  {
+    "id": "seed.insurance_warehouse.policies",
+    "type": "seed",
+    "parents": []
+  },
+  {
+    "id": "test.insurance_warehouse.unique_stg_policies_policy_id.cb33dd12e6",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.stg_policies"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.not_null_stg_policies_policy_id.83c6a6a32c",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.stg_policies"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.unique_dim_policy_policy_key.db91631eb5",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.dim_policy"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.not_null_dim_policy_policy_key.562d02314e",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.dim_policy"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.unique_dim_policy_policy_id.c3dd056319",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.dim_policy"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.not_null_dim_policy_policy_id.0e51a3ef39",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.dim_policy"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.unique_fact_premium_invoice_id.2bae450f81",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.fact_premium"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.not_null_fact_premium_invoice_id.7d91c7d745",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.fact_premium"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.not_null_fact_premium_policy_key.bdb1209643",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.fact_premium"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.relationships_fact_premium_policy_key__policy_key__ref_dim_policy_.089ff9453a",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.dim_policy",
+      "model.insurance_warehouse.fact_premium"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.unique_fact_claim_claim_id.7efcbea610",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.fact_claim"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.not_null_fact_claim_claim_id.723a0585c6",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.fact_claim"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.not_null_fact_claim_policy_key.8f90612ec4",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.fact_claim"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.relationships_fact_claim_policy_key__policy_key__ref_dim_policy_.81fe605da9",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.dim_policy",
+      "model.insurance_warehouse.fact_claim"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.accepted_values_fact_claim_status__open__closed__denied.57c228709f",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.fact_claim"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.unique_mart_policy_loss_policy_id.f065e484b8",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.mart_policy_loss"
+    ]
+  },
+  {
+    "id": "test.insurance_warehouse.not_null_mart_policy_loss_policy_id.7abe2701fd",
+    "type": "test",
+    "parents": [
+      "model.insurance_warehouse.mart_policy_loss"
+    ]
+  }
+]

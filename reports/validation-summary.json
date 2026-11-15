@@ -1,0 +1,7 @@
+{
+  "pytest_passed": 2,
+  "pytest_output": "..                                                                       [100%]\n2 passed in 0.24s",
+  "executed": "The complete dbt seed/run/snapshot/test/docs pipeline ran twice: seven models, one snapshot, and all 19 dbt data tests passed. Post-run assertions verified fact grains, the 0.4 policy loss ratio, empty-claim handling, and three current policy snapshots.",
+  "not_executed": "The tested runtime used dbt-core 1.10.23, dbt-duckdb 1.9.6, and DuckDB 1.4.5. Resolve and validate a supported toolchain for the target production environment; no external cloud warehouse was tested.",
+  "test_python": "3.9.6"
+}
