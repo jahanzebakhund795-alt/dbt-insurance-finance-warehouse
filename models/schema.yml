@@ -1,0 +1,38 @@
+version: 2
+models:
+  - name: stg_policies
+    columns:
+      - name: policy_id
+        tests: [unique, not_null]
+  - name: dim_policy
+    description: One row per policy; policy history is captured separately in a snapshot.
+    columns:
+      - name: policy_key
+        tests: [unique, not_null]
+      - name: policy_id
+        tests: [unique, not_null]
+  - name: fact_premium
+    description: Grain is one invoice, monetary amounts stored in integer cents.
+    columns:
+      - name: invoice_id
+        tests: [unique, not_null]
+      - name: policy_key
+        tests:
+          - not_null
+          - relationships: {to: "ref('dim_policy')", field: policy_key}
+  - name: fact_claim
+    description: Grain is the latest version of each claim.
+    columns:
+      - name: claim_id
+        tests: [unique, not_null]
+      - name: policy_key
+        tests:
+          - not_null
+          - relationships: {to: "ref('dim_policy')", field: policy_key}
+      - name: status
+        tests:
+          - accepted_values: {values: [open, closed, denied]}
+  - name: mart_policy_loss
+    columns:
+      - name: policy_id
+        tests: [unique, not_null]

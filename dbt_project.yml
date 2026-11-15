@@ -1,0 +1,15 @@
+name: insurance_warehouse
+version: '1.0.0'
+config-version: 2
+profile: insurance_warehouse
+model-paths: [models]
+seed-paths: [seeds]
+snapshot-paths: [snapshots]
+test-paths: [dbt_tests]
+clean-targets: [target, dbt_packages]
+models:
+  insurance_warehouse:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
